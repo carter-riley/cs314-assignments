@@ -16,6 +16,12 @@ html {
 	background: white;
 }
 
+header {
+	background: red;
+	text-align: center;
+	padding: 1%;
+}
+
 h1 {
 	font-size: 4em;
 	padding: 10px;
