@@ -4,9 +4,8 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="reset.css">
 		<link rel="stylesheet" href="style.css">	
-		<link href="fontawesome-free-5.0.6/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>mobile-layout</title>
+		<title>html-form</title>
 		<title></title>
 	</head>
 	<body>
@@ -18,7 +17,45 @@
 			
 		</header>
 		<section>
-
+			<form>
+				<section class="flex">
+					<section class ="flexbox">
+						<br>
+						First Name<br>
+						<input type="text" placeholder="Enter your first name"><br>
+						Last Name<br>
+						<input type="text" placeholder="Enter your last name"><br>
+					</section>
+					<section class="flexbox">
+						Email<br>
+						<input type="text" placeholder="Enter your email address"><br>
+						Choose a number<br>
+						<input type="number" placeholder="Enter a random number"><br><br>
+					</section>
+				</section>
+				<section class="radio">
+					<p id="radiotext">Ideal pet</p>
+					<input type="radio" name="pet" checked>Dog <input type="radio" name="pet">Cat
+					<input type="radio" name="pet">Other<br><br>
+				</section>
+				About You<br>
+				<textarea name="message" rows="10" cols="40" placeholder="Tell me something about yourself"></textarea><br><br>
+				Where do you want to live in the U.S?<br>
+				<select name=”area”>
+					<option>Pacific Northwest</option>
+					<option>Portland</option>
+					<option>Mt. Hood</option>
+					<option>SoCal</option>
+					<option>Midwest</option>
+					<option>Great Plains</option>
+					<option>Tornado Alley</option>
+					<option>Far North Alaska</option>
+					<option>Hawaii</option>
+					<option>Not the U.S.</option>
+					<option>Other</option>
+				</select><br><br>
+				<input type="Submit">
+			</form>
 		</section>
 	</body>
 </html>
