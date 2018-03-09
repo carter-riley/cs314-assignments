@@ -12,129 +12,84 @@
 
 html {
 	font-family: 'pt_sansregular', sans-serif;
-	width: 100%;
-	background: darkred;
-	color: red;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em;
+    background-color: lightgray;
 }
 
-header {
-	background: red;
-	text-align: center;
-	padding: 1%;
-	color: darkred;
+body {
+    height: 100%;
+    margin: 0;
 }
 
-h1 {
-	font-size: 4em;
-	padding: 10px;
+a {
+    padding: 0%;
+    transition: padding 2s;
 }
 
-form {
-	text-align: center;
-}
-
-input { 
-	width: 50%;
-	outline: none;
-	background-color: darkred;
-	color: red;
-	border: none;
-
-    border-bottom: 2px dotted red;
-
-}
-
-::placeholder {
-	color: red;
+a:hover {
+    background-color: lightblue;
+    padding: 1%;
 }
 
 input[type=submit] {
-	border: dotted;
-	border-color: red;
-	color: red;
-	border-radius: 5%;
+    padding: 0%;
+    transition: padding 2s
 }
 
 input[type=submit]:hover {
-	cursor: wait;
+    cursor: wait;
+    padding: 1%;
 }
 
-textarea {
-	resize: none;
-	outline: none;
-	border: dotted;
-	border-color: red;
-	background-color: darkred;
-	color: red;
-	border-radius: 5%;
-
+.homebackground {
+    background-image: url("IMG_20170902_172047 (1).jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-select {
-	outline: none;
-	border: dotted;
-	border-color: red;
-	border-radius: 5%;
-	background-color: darkred;
-	color: red;
-	padding: 1%;
+.interestsbackground {
+    background-image: url("IMG_20180303_141754895.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.text {
-
+section {
+    padding: 1%;
 }
 
-#radiotext {
-	justify-content: center;
-	align-content: center;
-	position: relative;
-	left: 50%;;
+header {
+    background-color: gray;
+    color: white;
+    padding: 1%;
+    text-align: left;
 }
 
-.radio {
-	padding: 1%;
-	justify-content: center;
-	text-align: justify;
-	align-content: center;
-	width: 50%;
-	position: relative;
-	left: 25%;
+h1 {
+    font-size: 4em;
+    background-color: lightblue;
 }
 
-.flex {
-	
-	display: flex;
-	flex-direction: row;
-	width: 75%;
-	
-	flex-wrap: wrap;
-	text-align: center;
-	justify-content: center;
+h2 {
+    font-size: 3em;
+    background-color: steelblue;
 }
 
-.flexbox {
-	position: relative;
-	left: 20%;
-	width: 40%;
-	text-align: center;
-	margin: center;
-	justify-content: center;
-	align-items: center;
-
+h3 {
+    font-size: 2em;
+    color: teal;
 }
 
-@media only screen and (max-width: 768px) {
-    .flex {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-		flex-wrap: wrap;
-	}
-	
-	.flexbox {
-		width: 75%;
-	}
-	
+footer {
+    background-color: black;
+    color: white;
+    padding: 1%;
+    text-align: left;
 }
-
