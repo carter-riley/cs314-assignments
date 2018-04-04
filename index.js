@@ -1,66 +1,169 @@
 "use strict";
 
-function askTrueFalse() {
-	if(confirm("Click OK if you agree and No if you disagree.")) {
-		alert("You clicked yes!");
+// 1: Char Swap
+function charSwap(inputString) {
+	let first = inputString.slice(0,1);
+	let last = inputString.slice(inputString.length - 1, inputString.length);
+	
+	inputString = inputString.substring(1,inputString.length);
+	inputString = inputString.substring(0,inputString.length - 1);
+
+	let newString = last + inputString + first;
+	
+	alert("This is your new string: " + newString);
+}
+
+// 2: Hi String
+function greeting(name) {
+	if(name.substring(0,2) == "Hi") {
+		alert(name);
 	} else {
-		alert("You clicked no!")
+		alert("Hi " + name);
 	}
 }
 
-function askTrueFalseTernary() {
-	confirm("Click OK if you agree and No if you disagree.") ? alert("You clicked yes!") : alert("You clicked no!");
+// 3: Three Chars to Front
+function threeCharFront(inputString) {
+	let newString = inputString.slice(inputString.length - 3,inputString.length) + inputString.substring(0,inputString.length - 3);
+	alert("The new string is: " + newString);
 }
 
-function inputNumber() {
-	let number = prompt("Please input your favorite number.");
-	if(number == null) {
+// 4: Strings to Sentence
+function stringSentence(stringList) {
+	let stringArray = stringList.split(", ");
+	
+	alert(`My favorite color is ${stringArray[0]}, ${stringArray[1]} are awesome, and I love ${stringArray[2]}`);
+}
+
+// 5: Upper or Lower
+function upperLower(someString) {
+	let newString = "";
+	
+	if(someString.length > 3) {
+		newString = someString.slice(0,3);
+		newString = newString.toLowerCase() + someString.slice(3,someString.length);
+	} else {
+		newString = someString.toUpperCase();
+	}
+	
+	alert("Your new string is: " + newString);
+}
+
+// 6: Integer Swap
+function integerSwap(numList) {
+	let numArray = numList.split(",");
+	
+	let last = numArray.pop();
+	let first = numArray.shift();
+	
+	numArray.unshift(last);
+	numArray.push(first);
+	alert("The new array is: " + numArray);
+}
+
+// 7: Longest String
+function longestString(stringList){
+	let stringArray = stringList.split(",");
+	let lengthOfLongestString = 0;
+	let currLongestString = 0;
+
+	for(let i = 0; i < stringArray.length; i++) {
+		if(stringArray[i].length > lengthOfLongestString) {
+			lengthOfLongestString = stringArray[i].length;
+			currLongestString = i;	
+		}
+	}
+	alert("The longest string is: " + stringArray[currLongestString]);
+}
+
+// 8: Largest Even Number
+function largestEvenNumber(numList) {
+	if(numList == null) {
 		alert("You hit cancel");
-	} else if(isNaN(number)) {
-		alert("You did not enter a number.");
-	} else if(number == "") {
-		alert("You didn't input anything.");
+	} else if(numList == "") {
+		alert("You didn\'t input anything.");
+	}
+
+	let largestNum = 0;
+	let newNum;
+
+	for(let i = 0; i < numList.length; i++) {
+		if(numList[i] > largestNum && numList[i] % 2 == 0) {
+			largestNum = numList[i];
+		}
+	}
+	if(largestNum != NaN) {
+		alert("The largest even number in the list you provided is: " + largestNum);
 	} else {
-		alert("Your favorite number is " + number);
+		alert("You did not enter any even numbers");
 	}
 }
 
-function RandomConstructorFunction(newName, newNumber) {
-	this.name = newName;
-	this.number = newNumber;
-	this.twoNumber = newNumber * 2;
-}
-
-function CopyObject(object, lastName) {
-    this.name = object.name;
-    this.number = object.number;
-    this.twoNumber = object.twoNumber;
-    this.lastName = lastName;
-} 
-
-function optionalDefault(firstNumber, secondNuber, thirdNumber) {
-	if(thirdNumber == undefined) {
-		thirdNumber = 1;
+// 9: Current Day Time
+function currentDayTime() {
+	let now = new Date();
+	let dayOfWeek;
+	switch(now.getDay()) {
+		case 0:
+			dayOfWeek = "Sunday";
+			break;
+		case 1:
+			dayOfWeek = "Monday";
+			break;
+		case 2:
+			dayOfWeek = "Tuesday";
+			break;
+		case 3:
+			dayOfWeek = "Wednesday";
+			break;
+		case 4:
+			dayOfWeek = "Thursday";
+			break;
+		case 5:
+			dayOfWeek = "Friday";
+			break;
+		case 6:
+			dayOfWeek = "Saturday";
+			break;
+		default:
+			dayOfWeek = "Something went wrong";
+			break;
 	}
-	return firstNumber * secondNuber * thirdNumber;
-}
 
+	let AMPM;
+	let hours;
 
-let optionalDefaultExpression = function(firstNumber, secondNumber, thirdNumber) {
-	if(thirdNumber == undefined) {
-		thirdNumber = 1;
+	if(now.getHours() > 12) {
+		hours = now.getHours() - 12;
+		AMPM = "PM";
+	} else if(now.getHours() == 12) {
+		hours = 12
+		AMPM = "PM";
+	}else {
+		hours = now.getHours();
+		AMPM = "AM";
 	}
-	return firstNumber * secondNuber * thirdNumber;
+
+	alert("Today is " + dayOfWeek + ".\nIt is " + hours + ":" + now.getMinutes() + " " + AMPM);
 }
 
-// askTrueFalse();
-// askTrueFalseTernary();
-// inputNumber();
-// let newPerson = new RandomConstructorFunction(prompt("Please enter your name"), prompt("please enter a random number"));
-// console.log("This is a newPerson " + newPerson.name + " " + newPerson.number + " " + newPerson.twoNumber);
-// let newerPerson = new CopyObject(newPerson, prompt("enter your last name"));
-// console.log("This is a newerPerson " + newerPerson.name + " " + newerPerson.lastName + " " + newerPerson.number + " " + newerPerson.twoNumber);
-// optionalDefault(12, 15);
-// optionalDefaultExpression(12. 15);
-// let nums = [25, 24];
-// console.log(nums.map(({multiply}) => multiply));
+// 10: Unlimited Function
+function unlimitedFunction() {
+	let togetherString = "";
+	for(let i = 0; i < arguments.length; i++) {
+		togetherString += arguments[i];
+	}
+	alert(togetherString);
+}
+
+// Function calls:
+// charSwap(prompt("Please enter a string."));
+// greeting(prompt("Please enter a string."));
+// threeCharFront(prompt("Please enter a string longer than 3 characters"));
+// stringSentence(prompt("Please enter strings seperated by commas."));
+// upperLower(prompt("Please input a string."));
+// integerSwap(prompt("Please enter numbers seperated by commas."));
+// longestString(prompt("Please enter strings seperated by commas."));
+// largestEvenNumber(prompt("Please enter numbers seperated by commas."));
+// currentDayTime();
+// unlimitedFunction("Hello ", "my ", "name ", "is ", "Carter.");
