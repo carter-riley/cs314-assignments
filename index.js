@@ -1,70 +1,100 @@
-"use strict";
+'use strict'
 
-function moveOnClick(number) {
-	console.log("You clicked: " + number.toString());
-	document.getElementById(number).scrollIntoView();
-}
+$.ajax({
+	url: "https://jsonplaceholder.typicode.com/users/",
+	type: "GET",
+	dataType: "json",
+})
+.done( function( json ) {
+	$(event.target).attr('data-loaded', 'true');
+	
+	getResponse(json);
+})
 
-function backgroundColorOnClick(color) {
-	console.log("You clicked: " + color);
-	document.getElementById("html").style.backgroundColor = color;
-}
-
-function backgroundColorOnClick2() {
-	let currentColor = document.getElementById("colorButton").innerText;
-	let color = currentColor.substring(10);
-	let newColor = color.substring(0, color.length - 1);
-	console.log("You clicked: " + newColor);
-	document.getElementById("html").style.backgroundColor = newColor;
-	if(newColor == "pink") {
-		document.getElementById("colorButton").innerText = "Click for orange!";
-	} else {
-		document.getElementById("colorButton").innerText = "Click for pink!";
+function getResponse(response) {
+	for(let i = 0; i < response.length; i++) {
+		let newParagraph = $(`<p id='id${response[i].id}'></p>`);
+		$("body").append(newParagraph);
+		
+        $(`#id${response[i].id}`).append("Name: " + response[i].name);
+        $(`#id${response[i].id}`).append("<br>");
+		$(`#id${response[i].id}`).append("Email: " + response[i].email);
+        $(`#id${response[i].id}`).append("<br>");
+		$(`#id${response[i].id}`).append("Company: " + response[i].company.name);
+        $(`#id${response[i].id}`).append("<br>");
+		$(`#id${response[i].id}`).append(`<button id="todo${response[i].id}" onClick='todoOnClick(${response[i].id})'>Click to see Todos</button>`);
+        $(`#id${response[i].id}`).append("<br>");
+		$(`#id${response[i].id}`).append(`<button id="album${response[i].id}" onClick='albumOnClick(${response[i].id})'>Click to see Albums</button>`);
 	}
 }
 
-function addTextInput() {
-	let input = document.getElementById("input").value;
 
-	let listObject = document.createElement("LI");
-	let text = document.createTextNode(input);
-	listObject.appendChild(text);
-	document.getElementById("newItemList").appendChild(listObject);
-	console.log("You submitted: " + input);
+
+function todoOnClick(number) {
+	$.ajax({
+		url: "https://jsonplaceholder.typicode.com/todos/",
+		type: "GET",
+		dataType: "json",
+	})
+	.done( function( json ) {
+		$(event.target).attr('data-loaded', 'true');
+		
+		getToDo(json, number);
+	})
 }
 
-function removeListItem(currentElement) {
-	console.log("you pressed item: " + currentElement);
-	let list = document.getElementById("removeListItem");
-	if(list.hasChildNodes()) {
-		list.removeChild(list.childNodes[currentElement]);
-		if(currentElement == 1) {
-			list.removeChild(list.childNodes[1]);
-		} else if(currentElement == 2) {
-			list.removeChild(list.childNodes[3]);
-		} else if(currentElement == 3) {
-			list.removeChild(list.childNodes[5]);
-		} else if(currentElement == 4) {
-			list.removeChild(list.childNodes[7]);
+function getToDo(response, userID) {
+    $(`#todo${userID}`).replaceWith(`<button id="todo${userID}" onClick='removeTodo(${userID})'>Click to remove Todos</button>`);
+
+	$(`#id${userID}`).append(`<ul class="todoList${userID}">`)
+
+	
+	for(let i = 0; i < response.length; i++) {
+		if(response[i].userId == userID) {
+            if(response[i].completed) {
+			    $(`.todoList${userID}`).append("<li>" + response[i].title + " <i class='fas fa-check-square'></i></li>");
+            } else {
+			    $(`.todoList${userID}`).append("<li>" + response[i].title + "<i class='fas fa-square'></i></li>");
+            }
 		}
 	}
+	
+	$(`#id${userID}`).append("</ul>")
 }
 
-function highLightListItem(currentElement) {
-	let list = document.getElementById("highLightListItem");
-	list.childNodes[1].style.backgroundColor = "lightgray";
- 	list.childNodes[3].style.backgroundColor = "lightgray";
- 	list.childNodes[5].style.backgroundColor = "lightgray";
-	list.childNodes[7].style.backgroundColor = "lightgray";
-	 
-	if(currentElement == 1) {
-		list.childNodes[1].style.backgroundColor = "red";
-	} else if(currentElement == 2) {
-		list.childNodes[3].style.backgroundColor = "red";
-	} else if(currentElement == 3) {
-		list.childNodes[5].style.backgroundColor = "red";
-	} else if(currentElement == 4) {
-		list.childNodes[7].style.backgroundColor = "red";
+function removeTodo(userID) {
+    $(`#todo${userID}`).replaceWith(`<button id="todo${userID}" onClick='todoOnClick(${userID})'>Click to see Todos</button>`);
+    $(`.todoList${userID}`).remove();
+}
+
+function albumOnClick(number) {
+		$.ajax({
+		url: "https://jsonplaceholder.typicode.com/albums/",
+		type: "GET",
+		dataType: "json",
+	})
+	.done( function( json ) {
+		$(event.target).attr('data-loaded', 'true');
+		
+		getAlbum(json, number);
+	})
+}
+
+function getAlbum(response, userID) {
+    $(`#album${userID}`).replaceWith(`<button id="album${userID}" onClick='removeAlbum(${userID})'>Click to remove Albums</button>`);
+
+    $(`#id${userID}`).append(`<ul class="albumList${userID}">`)
+	
+	for(let i = 0; i < response.length; i++) {
+		if(response[i].userId == userID) {
+			$(`.albumList${userID}`).append("<li>" + response[i].title + "</li>")
+		}
 	}
-	// document.getElementById("highListListItem").style.backgroundColor = "red";
+	
+	$(`#id${userID}`).append("</ul>")
+}
+
+function removeAlbum(userID) {
+    $(`#album${userID}`).replaceWith(`<button id="album${userID}" onClick='albumOnClick(${userID})'>Click to see Albums</button>`);
+    $(`.albumList${userID}`).remove();
 }
