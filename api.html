@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hacker News</title>
+		<link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="api.js"></script>
+  </head>
+  <body>
+		<header>
+			<nav>
+				<a href="index.html" class="links">Home</a>
+				<a href="form.html" class="links">Form</a>
+				<a href="map.html" class="links">Map</a>
+				<a href="api.html" class="links">Hacker News</a>
+			</nav>
+		</header>
+
+			<section>
+			<h1>
+				Hacker News
+			</h1>
+		</section>
+		<div id="hackerNews">
+
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyC94dqBKJelhRUKfx9AKLrhdKTMlUawuj8",
+				authDomain: "webdevfinal-1525203728343.firebaseapp.com",
+				databaseURL: "https://webdevfinal-1525203728343.firebaseio.com",
+				projectId: "webdevfinal-1525203728343",
+				storageBucket: "",
+				messagingSenderId: "250519042779"
+			};
+			firebase.initializeApp(config);
+		</script>
+		<footer>
+			© Carter Riley 2018
+		</footer>
+  </body>
+</html>
